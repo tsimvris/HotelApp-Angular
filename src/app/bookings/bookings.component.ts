@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class BookingsComponent implements OnInit {
 
   constructor() { }
-
+  booking = "Petros Buchung";
   ngOnInit(): void {
   }
 
