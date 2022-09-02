@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {Booking} from '../booking';
 import {Bookings} from '../mock-bookings';
 @Component({
   selector: 'app-bookings',
@@ -9,7 +8,7 @@ import {Bookings} from '../mock-bookings';
 export class BookingsComponent implements OnInit {
 
   constructor() { }
-  bookings = Bookings;
+  bookings  = Bookings;
   ngOnInit(): void {
   }
 
