@@ -25,7 +25,14 @@ export class CreateBookingComponent implements OnInit {
     }
   }
   onSubmit(): void {
-    Bookings.push(this.booking);
+    let bookingById = Bookings.find(
+      (booking) => booking.id === this.booking.id
+    )!;
+    if (bookingById === null || bookingById == undefined) {
+      Bookings.push(this.booking);
+    } else {
+      bookingById = this.booking;
+    }
     this.router.navigate(['/bookings']);
   }
   dateChanged(event: Event, isStart: boolean) {
