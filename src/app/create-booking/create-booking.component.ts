@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Booking } from '../booking';
 import { Bookings } from '../mock-bookings';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-create-booking',
   templateUrl: './create-booking.component.html',
   styleUrls: ['./create-booking.component.css'],
 })
 export class CreateBookingComponent implements OnInit {
-  constructor(private router: Router) {}
+  constructor(private router: Router, private activatedRoute: ActivatedRoute) {}
   booking: Booking = {
     id: 111,
     name: 'Your Name',
@@ -16,7 +16,13 @@ export class CreateBookingComponent implements OnInit {
     startDate: new Date(),
     endDate: new Date(),
   };
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (this.router.url != '/create') {
+      let id = Number(this.activatedRoute.snapshot.paramMap.get('id'));
+      let bookingById = Bookings.find((booking) => booking.id === id)!;
+      this.booking = bookingById;
+    }
+  }
   onSubmit(): void {
     Bookings.push(this.booking);
     this.router.navigate(['/bookings']);

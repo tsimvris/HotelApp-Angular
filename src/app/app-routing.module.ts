@@ -5,14 +5,13 @@ import { CreateBookingComponent } from './create-booking/create-booking.componen
 
 const routes: Routes = [
   { path: 'bookings', component: BookingsComponent },
-  { path: 'createBooking', component: CreateBookingComponent },
-  {path:"", redirectTo:"/bookings", pathMatch:"full"}
+  { path: 'create', component: CreateBookingComponent },
+  { path: 'edit/:id', component: CreateBookingComponent },
+
+  { path: '', redirectTo: '/bookings', pathMatch: 'full' },
 ];
 @NgModule({
-  imports: [
-    RouterModule.forRoot(routes)
-
-  ],
-  exports: [RouterModule]
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
