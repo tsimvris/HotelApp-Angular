@@ -7,32 +7,33 @@
       <div class="row mb-2">
         <div class="col">
           <!--ID-->
-          <label for="" class="form-label">ID</label>
-          <input class="form-control" />
+          <label for="id" class="form-label">ID</label>
+          <input [(ngModel)]="booking.id" id="id" name="id" class="form-control" type="number" />
         </div>
         <div class="col">
           <!--ROOM NUMBER-->
-          <label for="" class="form-label">Room Number</label>
-          <input class="form-control" />
+          <label for="roomNumber" class="form-label">Room Number</label>
+          <input class="form-control" id="roomNumber" name="roomNumber" [(ngModel)]="booking.roomNumber"
+            type="number" />
         </div>
       </div>
       <div class="row mb-2">
         <div class="col-4">
           <!--NAME-->
-          <label for="" class="form-label">Guest Name</label>
-          <input class="form-control" />
+          <label for="guestName" class="form-label">Guest Name</label>
+          <input class="form-control" id="guestName" name="name" [(ngModel)]="booking.name" type="text" />
         </div>
       </div>
       <div class="row">
         <div class="col">
           <!--START DATE-->
-          <label for="" class="form-label">Check In Date</label>
-          <input class="form-control" />
+          <label for="startDate" class="form-label">Check In</label>
+          <input class="form-control" id="startDate" name="startDate" [(ngModel)]="booking.startDate" type="date" />
         </div>
         <div class="col">
           <!--END DATE-->
-          <label for="" class="form-label">Check Out Date</label>
-          <input class="form-control" />
+          <label for="endDate" class="form-label">Check Out</label>
+          <input class="form-control" id="endDate" name="endDate" [(ngModel)]="booking.endDate" type="date" />
         </div>
       </div>
     </form>
