@@ -1,15 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { Booking } from '../booking';
-import { Bookings } from '../mock-bookings';
 import { Router, ActivatedRoute } from '@angular/router';
 import { nanoid } from 'nanoid';
+import { BookingService } from '../booking.service';
 @Component({
   selector: 'app-create-booking',
   templateUrl: './create-booking.component.html',
   styleUrls: ['./create-booking.component.css'],
 })
 export class CreateBookingComponent implements OnInit {
-  constructor(private router: Router, private activatedRoute: ActivatedRoute) {}
+  constructor(
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
+    private bookingService: BookingService
+  ) {}
   booking: Booking = {
     id: nanoid(),
     name: '',
