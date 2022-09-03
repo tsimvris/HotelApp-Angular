@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Bookings } from '../mock-bookings';
 import { Booking } from '../booking';
 @Component({
   selector: 'app-bookings',
