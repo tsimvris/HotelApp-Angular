@@ -1,15 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { Booking } from '../booking';
-import { Bookings } from '../mock-bookings';
 import { Router, ActivatedRoute } from '@angular/router';
 import { nanoid } from 'nanoid';
+import { BookingService } from '../booking.service';
 @Component({
   selector: 'app-create-booking',
   templateUrl: './create-booking.component.html',
   styleUrls: ['./create-booking.component.css'],
 })
 export class CreateBookingComponent implements OnInit {
-  constructor(private router: Router, private activatedRoute: ActivatedRoute) {}
+  constructor(
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
+    private bookingService: BookingService
+  ) {}
   booking: Booking = {
     id: nanoid(),
     name: '',
@@ -20,18 +24,16 @@ export class CreateBookingComponent implements OnInit {
   ngOnInit(): void {
     if (this.router.url != '/create') {
       let id = this.activatedRoute.snapshot.paramMap.get('id');
-      let bookingById = Bookings.find((booking) => booking.id === id)!;
+      let bookingById = this.bookingService.getBookingById(id!);
       this.booking = bookingById;
     }
   }
   onSubmit(): void {
-    let bookingById = Bookings.find(
-      (booking) => booking.id === this.booking.id
-    )!;
+    let bookingById = this.bookingService.getBookingById(this.booking.id);
     if (bookingById === null || bookingById == undefined) {
-      Bookings.push(this.booking);
+      this.bookingService.addBooking(this.booking);
     } else {
-      bookingById = this.booking;
+      this.bookingService.updateBooking(this.booking);
     }
     this.router.navigate(['/bookings']);
   }
