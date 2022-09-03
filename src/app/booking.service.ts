@@ -14,4 +14,15 @@ export class BookingService {
     let i = Bookings.indexOf(booking);
     Bookings.splice(i, 1);
   }
+  getBookingById(id: string): Booking {
+    let bookingById = Bookings.find((booking) => booking.id === id)!;
+    return bookingById;
+  }
+  addBooking(booking: Booking): void {
+    Bookings.push(booking);
+  }
+  updateBooking(booking: Booking): void {
+    let currentBooking = this.getBookingById(booking.id);
+    currentBooking = booking;
+  }
 }
