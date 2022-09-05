@@ -13,17 +13,19 @@ export class BookingService {
 
   getBookings(): Observable<Booking[]> {
     let response = this.httpClient.get<Booking[]>(this.bookingsUrl);
-
     return response;
-  }
-  deleteBooking(booking: Booking): void {
-    let i = Bookings.indexOf(booking);
-    Bookings.splice(i, 1);
   }
   getBookingById(id: string): Booking {
     let bookingById = Bookings.find((booking) => booking.id === id)!;
     return bookingById;
   }
+  deleteBooking(booking: Booking): Observable<Booking> {
+    let response = this.httpClient.delete<Booking>(
+      this.bookingsUrl + '/' + booking.id
+    );
+    return response;
+  }
+
   addBooking(booking: Booking): void {
     Bookings.push(booking);
   }
