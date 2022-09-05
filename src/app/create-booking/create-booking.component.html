@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card bg-light">
   <div class="card-header">
     <h5>Create New Booking</h5>
   </div>
@@ -8,20 +8,21 @@
         <div class="col">
           <!--ID-->
           <label for="id" class="form-label">ID</label>
-          <input [(ngModel)]="booking.id" id="id" name="id" class="form-control" type="text" disabled="" />
+          <input [(ngModel)]="booking.id" id="id" name="id" class="form-control bg-dark text-light" type="text"
+            disabled="" />
         </div>
         <div class="col">
           <!--ROOM NUMBER-->
           <label for="roomNumber" class="form-label">Room Number</label>
-          <input placeholder="0" class="form-control" id="roomNumber" name="roomNumber" [(ngModel)]="booking.roomNumber"
-            type="number" />
+          <input placeholder="0" class="form-control bg-dark text-light" id="roomNumber" name="roomNumber"
+            [(ngModel)]="booking.roomNumber" type="number" />
         </div>
       </div>
       <div class="row mb-2">
-        <div class="col-4">
+        <div class="col-12">
           <!--NAME-->
           <label for="guestName" class="form-label">Guest Name</label>
-          <input placeholder="Please enter your Name" class="form-control" id="guestName" name="name"
+          <input placeholder="Please enter your Name" class="form-control bg-dark text-light" id="guestName" name="name"
             [(ngModel)]="booking.name" type="text" />
         </div>
       </div>
@@ -29,20 +30,20 @@
         <div class="col">
           <!--START DATE-->
           <label for="startDate" class="form-label">Check In</label>
-          <input (input)="dateChanged($event, true)" class="form-control" id="startDate" name="startDate"
-            [value]="booking.startDate | date:'yyyy-MM-dd'" type="date" />
+          <input (input)="dateChanged($event, true)" class="form-control bg-dark text-light" id="startDate"
+            name="startDate" [value]="booking.startDate | date:'yyyy-MM-dd'" type="date" />
         </div>
         <div class="col">
           <!--END DATE-->
           <label for="endDate" class="form-label">Check Out</label>
-          <input (input)="dateChanged($event, false)" class="form-control" id="endDate" name="endDate"
-            [value]="booking.endDate | date:'yyyy-MM-dd'" type="date" />
+          <input (input)="dateChanged($event, false)" class="form-control bg-dark text-light" id="endDate"
+            name="endDate" [value]="booking.endDate | date:'yyyy-MM-dd'" type="date" />
         </div>
       </div>
     </form>
   </div>
   <div class="card-footer">
-    <button class="btn btn-primary" (click)="onSubmit()">
+    <button class="btn bg-dark text-light" (click)="onSubmit()">
       Submit
     </button>
   </div>

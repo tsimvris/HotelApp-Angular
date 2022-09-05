@@ -1,9 +1,9 @@
-<div class="list-group mt-3" *ngFor="let booking of bookings">
-  <div class="list-group-item mb-2" aria-current="true">
+<div class="list-group mt-3 " *ngFor="let booking of bookings">
+  <div class="list-group-item mb-2 bg-light font-monospace font-monospace" aria-current="true">
     <div class="d-flex w-100 justify-content-between">
-      <a routerLink="/edit/{{booking.id}}" class="mb-1 h5 text-decoration-none ">{{booking.name}}
+      <a routerLink="/edit/{{booking.id}}" class="mb-1 h5 text-decoration-none text-dark">{{booking.name}}
       </a>
-      <button class="btn btn-close" (click)="deleteBooking(booking)">
+      <button class="btn btn-close text-bg-light" (click)="deleteBooking(booking)">
 
       </button>
 
