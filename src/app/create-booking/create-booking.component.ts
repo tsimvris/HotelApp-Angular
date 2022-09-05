@@ -19,18 +19,18 @@ export class CreateBookingComponent implements OnInit {
 
   booking: Booking = {
     id: nanoid(),
-    name: '',
-    roomNumber: 0,
+    name: 'Petros',
+    roomNumber: 10,
     startDate: new Date(),
     endDate: new Date(),
   };
 
   bookingForm = this.FormBuilder.group({
-    id: ['', Validators.required],
+    id: [nanoid(), Validators.required],
     name: ['', Validators.required],
-    roomNumber: ['', Validators.required],
-    startDate: ['', Validators.required],
-    endDate: ['', Validators.required],
+    roomNumber: [0, Validators.required],
+    startDate: [new Date(), Validators.required],
+    endDate: [new Date(), Validators.required],
   });
 
   ngOnInit(): void {
@@ -40,13 +40,27 @@ export class CreateBookingComponent implements OnInit {
         .getBookingById(id!)
         .subscribe((result) => {
           this.booking = result;
+          this.bookingForm.setValue({
+            id: this.booking.id,
+            name: this.booking.name,
+            roomNumber: this.booking.roomNumber,
+            startDate: this.booking.startDate,
+            endDate: this.booking.endDate,
+          });
         });
     }
   }
+
   onSubmit(): void {
+    this.booking.id = this.bookingForm.get('id')?.value;
+    this.booking.name = this.bookingForm.get('name')?.value;
+    this.booking.roomNumber = this.bookingForm.get('roomNumber')?.value;
+    this.booking.startDate = this.bookingForm.get('startDate')?.value;
+    this.booking.endDate = this.bookingForm.get('endDate')?.value;
     this.bookingService.addBooking(this.booking).subscribe();
     this.router.navigate(['/bookings']);
   }
+
   dateChanged(event: Event, isStart: boolean) {
     let value = (event.target as HTMLInputElement).value;
     if (isStart) {
