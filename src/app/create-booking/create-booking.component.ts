@@ -32,12 +32,10 @@ export class CreateBookingComponent implements OnInit {
     }
   }
   onSubmit(): void {
-    let bookingById = this.bookingService.getBookingById(this.booking.id);
-    if (bookingById === null || bookingById == undefined) {
-      this.bookingService.addBooking(this.booking).subscribe();
-    } else {
-      this.bookingService.updateBooking(this.booking);
-    }
+    this.bookingService.getBookingById(this.booking.id).subscribe();
+
+    this.bookingService.addBooking(this.booking).subscribe();
+
     this.router.navigate(['/bookings']);
   }
   dateChanged(event: Event, isStart: boolean) {

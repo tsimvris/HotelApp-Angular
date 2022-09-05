@@ -15,7 +15,7 @@ export class BookingService {
     return response;
   }
   getBookingById(id: string): Observable<Booking> {
-    let response = this.httpClient.delete<Booking>(this.bookingsUrl + '/' + id);
+    let response = this.httpClient.get<Booking>(this.bookingsUrl + '/' + id);
     return response;
   }
   deleteBooking(booking: Booking): Observable<Booking> {
@@ -28,9 +28,5 @@ export class BookingService {
   addBooking(booking: Booking): Observable<Booking> {
     let response = this.httpClient.post<Booking>(this.bookingsUrl, booking);
     return response;
-  }
-  updateBooking(booking: Booking): void {
-    let currentBooking = this.getBookingById(booking.id);
-    currentBooking = booking;
   }
 }
