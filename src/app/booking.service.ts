@@ -25,8 +25,9 @@ export class BookingService {
     return response;
   }
 
-  addBooking(booking: Booking): void {
-    Bookings.push(booking);
+  addBooking(booking: Booking): Observable<Booking> {
+    let response = this.httpClient.post<Booking>(this.bookingsUrl, booking);
+    return response;
   }
   updateBooking(booking: Booking): void {
     let currentBooking = this.getBookingById(booking.id);

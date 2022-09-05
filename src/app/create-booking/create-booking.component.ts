@@ -34,7 +34,7 @@ export class CreateBookingComponent implements OnInit {
   onSubmit(): void {
     let bookingById = this.bookingService.getBookingById(this.booking.id);
     if (bookingById === null || bookingById == undefined) {
-      this.bookingService.addBooking(this.booking);
+      this.bookingService.addBooking(this.booking).subscribe();
     } else {
       this.bookingService.updateBooking(this.booking);
     }
