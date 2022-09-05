@@ -3,6 +3,7 @@ import { Booking } from '../booking';
 import { Router, ActivatedRoute } from '@angular/router';
 import { nanoid } from 'nanoid';
 import { BookingService } from '../booking.service';
+import { FormBuilder, Validators } from '@angular/forms';
 @Component({
   selector: 'app-create-booking',
   templateUrl: './create-booking.component.html',
