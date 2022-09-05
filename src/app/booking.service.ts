@@ -1,14 +1,20 @@
 import { Injectable } from '@angular/core';
 import { Bookings } from './mock-bookings';
 import { Booking } from './booking';
-
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
 export class BookingService {
-  constructor() {}
-  getBookings(): Booking[] {
-    return Bookings;
+  constructor(private httpClient: HttpClient) {}
+
+  bookingsUrl: string = 'api/bookings';
+
+  getBookings(): Observable<Booking[]> {
+    let response = this.httpClient.get<Booking[]>(this.bookingsUrl);
+
+    return response;
   }
   deleteBooking(booking: Booking): void {
     let i = Bookings.indexOf(booking);

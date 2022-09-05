@@ -15,7 +15,7 @@ export class CreateBookingComponent implements OnInit {
     private bookingService: BookingService
   ) {}
   booking: Booking = {
-    id: '2',
+    id: nanoid(),
     name: '',
     roomNumber: 0,
     startDate: new Date(),
