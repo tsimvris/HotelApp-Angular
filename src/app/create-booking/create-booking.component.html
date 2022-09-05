@@ -2,48 +2,49 @@
   <div class="card-header bg-light text-dark">
     <h5>Create New Booking</h5>
   </div>
-  <div class="card-body">
-    <form>
+
+  <form [formGroup]="bookingForm" (ngSubmit)="onSubmit()">
+    <div class="card-body">
       <div class="row mb-2">
         <div class="col">
           <!--ID-->
           <label for="id" class="form-label">ID</label>
-          <input [(ngModel)]="booking.id" id="id" name="id" class="form-control bg-light" type="text" disabled="" />
+          <input formControlName="id" id="id" name="id" class="form-control bg-light" type="text" />
         </div>
         <div class="col">
           <!--ROOM NUMBER-->
           <label for="roomNumber" class="form-label">Room Number</label>
-          <input placeholder="0" class="form-control bg-light" id="roomNumber" name="roomNumber"
-            [(ngModel)]="booking.roomNumber" type="number" />
+          <input placeholder="0" formControlName="roomNumber" class="form-control bg-light" id="roomNumber"
+            type="number" />
         </div>
       </div>
       <div class="row mb-2">
         <div class="col-12">
           <!--NAME-->
           <label for="guestName" class="form-label">Guest Name</label>
-          <input placeholder="Please enter your Name" class="form-control bg-light" id="guestName" name="name"
-            [(ngModel)]="booking.name" type="text" />
+          <input placeholder="Please enter your Name" formControlName="name" class="form-control bg-light"
+            id="guestName" type="text" />
         </div>
       </div>
       <div class="row">
         <div class="col">
           <!--START DATE-->
           <label for="startDate" class="form-label">Check In</label>
-          <input (input)="dateChanged($event, true)" class="form-control bg-light" id="startDate" name="startDate"
-            [value]="booking.startDate | date:'yyyy-MM-dd'" type="date" />
+          <input (input)="dateChanged($event, true)" class="form-control bg-light" id="startDate"
+            formControlName="startDate" [value]="booking.startDate | date:'yyyy-MM-dd'" type="date" />
         </div>
         <div class="col">
           <!--END DATE-->
           <label for="endDate" class="form-label">Check Out</label>
-          <input (input)="dateChanged($event, false)" class="form-control bg-light" id="endDate" name="endDate"
-            [value]="booking.endDate | date:'yyyy-MM-dd'" type="date" />
+          <input (input)="dateChanged($event, false)" class="form-control bg-light" id="endDate"
+            formControlName="endDate" [value]="booking.endDate | date:'yyyy-MM-dd'" type="date" />
         </div>
       </div>
-    </form>
-  </div>
-  <div class="card-footer d-flex justify-content-center">
-    <button class="btn bg-light w-25 m-2" (click)="onSubmit()">
-      Submit
-    </button>
-  </div>
+    </div>
+    <div class="card-footer d-flex justify-content-center">
+      <button type="submit" class="btn bg-light w-25 m-2">
+        Submit
+      </button>
+    </div>
+  </form>
 </div>

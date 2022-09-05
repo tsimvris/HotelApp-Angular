@@ -13,8 +13,10 @@ export class CreateBookingComponent implements OnInit {
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private bookingService: BookingService
+    private bookingService: BookingService,
+    private FormBuilder: FormBuilder
   ) {}
+
   booking: Booking = {
     id: nanoid(),
     name: '',
@@ -22,6 +24,15 @@ export class CreateBookingComponent implements OnInit {
     startDate: new Date(),
     endDate: new Date(),
   };
+
+  bookingForm = this.FormBuilder.group({
+    id: ['', Validators.required],
+    name: ['', Validators.required],
+    roomNumber: ['', Validators.required],
+    startDate: ['', Validators.required],
+    endDate: ['', Validators.required],
+  });
+
   ngOnInit(): void {
     if (this.router.url != '/create') {
       let id = this.activatedRoute.snapshot.paramMap.get('id');
