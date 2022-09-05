@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Bookings } from './mock-bookings';
 import { Booking } from './booking';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -15,9 +14,9 @@ export class BookingService {
     let response = this.httpClient.get<Booking[]>(this.bookingsUrl);
     return response;
   }
-  getBookingById(id: string): Booking {
-    let bookingById = Bookings.find((booking) => booking.id === id)!;
-    return bookingById;
+  getBookingById(id: string): Observable<Booking> {
+    let response = this.httpClient.delete<Booking>(this.bookingsUrl + '/' + id);
+    return response;
   }
   deleteBooking(booking: Booking): Observable<Booking> {
     let response = this.httpClient.delete<Booking>(
