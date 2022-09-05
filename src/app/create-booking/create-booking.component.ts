@@ -15,7 +15,7 @@ export class CreateBookingComponent implements OnInit {
     private bookingService: BookingService
   ) {}
   booking: Booking = {
-    id: '2',
+    id: nanoid(),
     name: '',
     roomNumber: 0,
     startDate: new Date(),
@@ -24,17 +24,15 @@ export class CreateBookingComponent implements OnInit {
   ngOnInit(): void {
     if (this.router.url != '/create') {
       let id = this.activatedRoute.snapshot.paramMap.get('id');
-      let bookingById = this.bookingService.getBookingById(id!);
-      this.booking = bookingById;
+      let bookingById = this.bookingService
+        .getBookingById(id!)
+        .subscribe((result) => {
+          this.booking = result;
+        });
     }
   }
   onSubmit(): void {
-    let bookingById = this.bookingService.getBookingById(this.booking.id);
-    if (bookingById === null || bookingById == undefined) {
-      this.bookingService.addBooking(this.booking);
-    } else {
-      this.bookingService.updateBooking(this.booking);
-    }
+    this.bookingService.addBooking(this.booking).subscribe();
     this.router.navigate(['/bookings']);
   }
   dateChanged(event: Event, isStart: boolean) {
