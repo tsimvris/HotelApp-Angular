@@ -3,20 +3,28 @@ import { Booking } from '../booking';
 import { Router, ActivatedRoute } from '@angular/router';
 import { nanoid } from 'nanoid';
 import { BookingService } from '../booking.service';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-create-booking',
   templateUrl: './create-booking.component.html',
   styleUrls: ['./create-booking.component.css'],
 })
 export class CreateBookingComponent implements OnInit {
+  bookingForm: FormGroup;
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private bookingService: BookingService,
     private FormBuilder: FormBuilder
-  ) {}
-
+  ) {
+    this.bookingForm = this.FormBuilder.group({
+      id: [nanoid(), Validators.required],
+      name: ['', Validators.required],
+      roomNumber: [0, Validators.required],
+      startDate: [new Date(), Validators.required],
+      endDate: [new Date(), Validators.required],
+    });
+  }
   booking: Booking = {
     id: nanoid(),
     name: 'Petros',
@@ -24,14 +32,6 @@ export class CreateBookingComponent implements OnInit {
     startDate: new Date(),
     endDate: new Date(),
   };
-
-  bookingForm = this.FormBuilder.group({
-    id: [nanoid(), Validators.required],
-    name: ['', Validators.required],
-    roomNumber: [0, Validators.required],
-    startDate: [new Date(), Validators.required],
-    endDate: [new Date(), Validators.required],
-  });
 
   ngOnInit(): void {
     if (this.router.url != '/create') {
