@@ -16,6 +16,12 @@
           <label for="roomNumber" class="form-label">Room Number</label>
           <input placeholder="0" formControlName="roomNumber" class="form-control bg-light" id="roomNumber"
             type="number" />
+          <label *ngIf="bookingForm.get('roomNumber')?.hasError('min')" class="text-danger">
+            The room numbers start from 1
+          </label>
+          <label *ngIf="bookingForm.get('roomNumber')?.hasError('max')" class="text-danger">
+            The last room is the 100
+          </label>
         </div>
       </div>
       <div class="row mb-2">
@@ -24,6 +30,9 @@
           <label for="guestName" class="form-label">Guest Name</label>
           <input placeholder="Please enter your Name" formControlName="name" class="form-control bg-light"
             id="guestName" type="text" />
+          <label *ngIf="bookingForm.get('name')?.hasError('minlength')" class="text-warning">
+            The name should be at least 3 characters long
+          </label>
         </div>
       </div>
       <div class="row">
@@ -42,7 +51,7 @@
       </div>
     </div>
     <div class="card-footer d-flex justify-content-center">
-      <button type="submit" class="btn bg-light w-25 m-2">
+      <button [disabled]="bookingForm.invalid" type="submit" class="btn bg-light w-25 m-2">
         Submit
       </button>
     </div>

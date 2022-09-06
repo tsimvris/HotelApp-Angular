@@ -19,8 +19,18 @@ export class CreateBookingComponent implements OnInit {
   ) {
     this.bookingForm = this.FormBuilder.group({
       id: [nanoid(), Validators.required],
-      name: ['', Validators.required],
-      roomNumber: [0, Validators.required],
+      name: [
+        '',
+        Validators.compose([Validators.required, Validators.minLength(3)]),
+      ],
+      roomNumber: [
+        0,
+        Validators.compose([
+          Validators.required,
+          Validators.min(1),
+          Validators.max(100),
+        ]),
+      ],
       startDate: [new Date(), Validators.required],
       endDate: [new Date(), Validators.required],
     });
